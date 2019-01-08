@@ -1,0 +1,78 @@
+<h1 class="text-center">BOOK</h1>
+<hr>
+<div *ngIf="servicebook">
+<div class="card mb-4 shadow-sm text-center">
+
+  <div class="card-header">
+    <h4 class="my-0 font-weight-normal ">{{servicebook.bookid}}</h4>
+  </div>
+  <div class="card-body">
+    <h1 class="card-title pricing-card-title">{{servicebook.title}}</h1>
+    <ul class="list-unstyled mt-3 mb-4">
+      <li>{{servicebook.price}}</li>
+      <li>{{servicebook.volume}}</li>
+      <li>{{servicebook.date?.month}} {{servicebook.date?.dayOfMonth}},{{servicebook.date?.year}}</li>
+
+    </ul>
+    <button type="button" class="btn btn-lg btn-block btn-danger" (click)="loadBookforUpdate()">Update</button>
+    <button type="button" class="btn btn-lg btn-block btn-danger" (click)="deleteBook(servicebook.bookid)">Delete</button>
+    <br>
+    <div *ngIf="isDeleted" class="alert alert-success">
+      Book Delted !<br> .... Redirecting ....
+    </div>
+  </div>
+
+
+  <div *ngIf="editbook" class="text-left modal fade" id="updatemodel" tabindex="-1" role="dialog" aria-labelledby="updatemodeltitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updatemodeltitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label>Book ID</label>
+              <input type="text" class="form-control" placeholder="Enter Book ID" name="newBookid" [(ngModel)]="editbook.bookid" disabled>
+            </div>
+            <div class="form-group">
+              <label>Enter Book Title</label>
+              <input type="text" class="form-control" placeholder="Enter Title" name="newTitle" [(ngModel)]="editbook.title">
+            </div>
+            <div class="form-group">
+              <label>Book Price</label>
+              <input type="text" class="form-control" placeholder="Enter Book Price" name="newPrice" [(ngModel)]="editbook.price">
+            </div>
+            <div class="form-group">
+              <label>Book Volume</label>
+              <input type="text" class="form-control" placeholder="Enter Volume" name="newVolume" [(ngModel)]="editbook.volume">
+            </div>
+            <div class="form-group">
+              <label>Book Published Date</label>
+              <input type="date" class="form-control" placeholder="Enter Published Date" name="newpublishedDate" [(ngModel)]="editbook.publishDate">
+            </div>
+
+
+          </form>
+          <div class="container alert alert-success text-center" role="alert" *ngIf=Isupdated>
+            Book Successfully Updated !<br> ....Redirecting ....
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="updateBook()">Update changes</button>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
